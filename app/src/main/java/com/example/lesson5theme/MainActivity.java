@@ -2,8 +2,10 @@ package com.example.lesson5theme;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,7 +16,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-     String [] countries = { "first", "second", "third"};
+    String[] countries = {"first", "second", "third"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         TextView selection = findViewById(R.id.text);
         Spinner spinner = findViewById(R.id.spinner);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,countries);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, countries);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
                 ImageView img = findViewById(R.id.imageView);
                 if (position == 0) img.setImageResource(R.drawable.pivo);
-                if (position == 1)img.setImageResource(R.drawable.vodka);
+                if (position == 1) img.setImageResource(R.drawable.vodka);
             }
 
             @Override
@@ -51,13 +53,45 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public boolean onCreateOptionMenu(Menu menu){
+    public boolean onCreateOptionMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.mymenu,menu);
+        getMenuInflater().inflate(R.menu.mymenu, menu);
 
         return true;
     }
 
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
 
+        switch (id) {
+            case R.id.s1:
+
+                return true;
+
+            case R.id.s2:
+
+                return true;
+
+            case R.id.vis:
+
+                TextView selection = findViewById(R.id.text);
+                if (selection.getVisibility()==View.VISIBLE){
+                    selection.setVisibility(View.INVISIBLE);
+                }else{
+                    selection.setVisibility(View.VISIBLE);
+                }
+
+
+                Dialog dialog = new Dialog(MainActivity.this);
+                dialog.setTitle("отображение изменено");
+                dialog.setContentView(R.layout.dlg);
+                dialog.show();
+                return true;
+
+
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }
