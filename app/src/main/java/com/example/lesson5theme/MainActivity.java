@@ -18,10 +18,12 @@ public class MainActivity extends AppCompatActivity {
 
     String[] countries = {"first", "second", "third"};
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         TextView selection = findViewById(R.id.text);
         Spinner spinner = findViewById(R.id.spinner);
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public boolean onCreateOptionMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.mymenu, menu);
 
@@ -66,19 +68,21 @@ public class MainActivity extends AppCompatActivity {
 
         switch (id) {
             case R.id.s1:
-
+                this.setTheme(R.style.them1);
+                this.recreate();
                 return true;
 
             case R.id.s2:
-
+                this.setTheme(R.style.them2);
+                this.recreate();
                 return true;
 
             case R.id.vis:
 
                 TextView selection = findViewById(R.id.text);
-                if (selection.getVisibility()==View.VISIBLE){
+                if (selection.getVisibility() == View.VISIBLE) {
                     selection.setVisibility(View.INVISIBLE);
-                }else{
+                } else {
                     selection.setVisibility(View.VISIBLE);
                 }
 
@@ -90,9 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
 
-
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
