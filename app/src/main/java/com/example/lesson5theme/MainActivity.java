@@ -3,6 +3,7 @@ package com.example.lesson5theme;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -48,6 +49,13 @@ public class MainActivity extends AppCompatActivity {
 
         spinner.setOnItemSelectedListener(itemSelectedListener);
 
+    }
+
+    public boolean onCreateOptionMenu(Menu menu){
+
+        getMenuInflater().inflate(R.menu.mymenu,menu);
+
+        return true;
     }
 
 
