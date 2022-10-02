@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -34,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String item = (String) parent.getItemAtPosition(position);
                 selection.setText(item);
+
+                ImageView img = findViewById(R.id.imageView);
+                if (position == 0) img.setImageResource(R.drawable.pivo);
+                if (position == 1)img.setImageResource(R.drawable.vodka);
             }
 
             @Override
@@ -44,4 +49,7 @@ public class MainActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(itemSelectedListener);
 
     }
+
+
+
 }
