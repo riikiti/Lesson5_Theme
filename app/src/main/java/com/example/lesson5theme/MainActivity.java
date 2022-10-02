@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         spinner.setOnItemSelectedListener(itemSelectedListener);
 
+
     }
 
     public boolean onCreateOptionMenu(Menu menu) {
