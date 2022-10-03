@@ -3,6 +3,7 @@ package com.example.lesson5theme;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,13 +18,13 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     String[] countries = {"first", "second", "third"};
+    static int theme = 0;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         TextView selection = findViewById(R.id.text);
         Spinner spinner = findViewById(R.id.spinner);
@@ -33,7 +34,13 @@ public class MainActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(adapter);
+        if (theme == 0) {
+            this.setTheme(R.style.them1);
 
+        } else {
+            this.setTheme(R.style.them2);
+
+        }
 
         AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
             @Override
@@ -68,12 +75,12 @@ public class MainActivity extends AppCompatActivity {
 
         switch (id) {
             case R.id.s1:
-                this.setTheme(R.style.them1);
+                theme =0;
                 this.recreate();
                 return true;
 
             case R.id.s2:
-                this.setTheme(R.style.them2);
+                theme =1 ;
                 this.recreate();
                 return true;
 
@@ -92,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
                 dialog.setContentView(R.layout.dlg);
                 dialog.show();
                 return true;
-
 
         }
         return super.onOptionsItemSelected(item);
