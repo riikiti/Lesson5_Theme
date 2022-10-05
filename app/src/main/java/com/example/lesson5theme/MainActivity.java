@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Dialog;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,9 +19,10 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    String[] countries = {"first", "second", "third"};
+    String[] countries = {"first", "second", "third", "Четыре"};
     static int theme = 0;
-
+    String description[] = {"pp", "kurgan", "da", "net"};
+    int idCountry = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +52,22 @@ public class MainActivity extends AppCompatActivity {
                 selection.setText(item);
 
                 ImageView img = findViewById(R.id.imageView);
-                if (position == 0) img.setImageResource(R.drawable.pivo);
-                if (position == 1) img.setImageResource(R.drawable.vodka);
+                if (position == 0) {
+                    img.setImageResource(R.drawable.caption);
+                    idCountry = 0;
+                }
+                if (position == 1) {
+                    img.setImageResource(R.drawable.pp);
+                    idCountry = 1;
+                }
+                if (position == 2) {
+                    img.setImageResource(R.drawable.pivo);
+                    idCountry = 2;
+                }
+                if (position == 3) {
+                    img.setImageResource(R.drawable.vodka);
+                    idCountry = 3;
+                }
             }
 
             @Override
@@ -75,12 +92,12 @@ public class MainActivity extends AppCompatActivity {
 
         switch (id) {
             case R.id.s1:
-                theme =0;
+                theme = 0;
                 this.recreate();
                 return true;
 
             case R.id.s2:
-                theme =1 ;
+                theme = 1;
                 this.recreate();
                 return true;
 
@@ -96,7 +113,13 @@ public class MainActivity extends AppCompatActivity {
 
                 Dialog dialog = new Dialog(MainActivity.this);
                 dialog.setTitle("отображение изменено");
-                dialog.setContentView(R.layout.dlg);
+
+                TextView view = new TextView(dialog.getContext());
+
+                view.setText(Html.fromHtml("<strong>" + description[idCountry] + "</strong>"));
+                view.setMovementMethod(LinkMovementMethod.getInstance());
+                view.setPadding(10, 10, 10, 10);
+                dialog.setContentView(view);
                 dialog.show();
                 return true;
 
